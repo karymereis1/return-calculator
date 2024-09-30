@@ -1,0 +1,9 @@
+br/edu/usp/return_calculator/dto/AssetReturnRateRequest.class
+br/edu/usp/return_calculator/dto/AssetReturnRateListRequest.class
+br/edu/usp/return_calculator/ReturnCalculatorApplication.class
+br/edu/usp/return_calculator/repository/AssetReturnRateRepositoryPostgres.class
+br/edu/usp/return_calculator/config/DatomicConfig.class
+br/edu/usp/return_calculator/controller/ProjectionController.class
+br/edu/usp/return_calculator/repository/AssetReturnRateRepositoryDatomic.class
+br/edu/usp/return_calculator/model/AssetReturnRate.class
+br/edu/usp/return_calculator/service/AssetReturnRateService.class
