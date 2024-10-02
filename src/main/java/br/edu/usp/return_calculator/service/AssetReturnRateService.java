@@ -11,7 +11,7 @@ import org.hibernate.envers.AuditReaderFactory;
 import org.hibernate.envers.query.AuditEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import java.math.BigDecimal;
+
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -42,29 +42,51 @@ public class AssetReturnRateService {
         return assetReturnRateRepositoryDatomic.findAll();
     }
 
-    public AssetReturnRate createAssetReturnRatePostgres(String asset, BigDecimal returnRate) {
-        AssetReturnRate assetReturnRate = new AssetReturnRate();
-        assetReturnRate.setId(UUID.randomUUID());
-        assetReturnRate.setAsset(asset);
-        assetReturnRate.setReturnRate(returnRate);
-        assetReturnRate.setCreatedAt(LocalDateTime.now());
-        assetReturnRate.setUpdatedAt(LocalDateTime.now());
-        return assetReturnRateRepositoryPostgres.save(assetReturnRate);
+    public List<AssetReturnRate> createAssetReturnRatesPostgres(AssetReturnRateListRequest assetReturnRateListRequest) {
+        List<AssetReturnRate> createdAssetReturnRates = new ArrayList<>();
+        for (AssetReturnRateRequest request : assetReturnRateListRequest.getAssets()) {
+            AssetReturnRate assetReturnRate = new AssetReturnRate();
+            assetReturnRate.setId(UUID.randomUUID());
+            assetReturnRate.setAsset(request.getAsset());
+            assetReturnRate.setReturnRate(request.getReturnRate());
+            assetReturnRate.setCreatedAt(LocalDateTime.now());
+            assetReturnRate.setUpdatedAt(LocalDateTime.now());
+
+            createdAssetReturnRates.add(assetReturnRateRepositoryPostgres.save(assetReturnRate));
+        }
+        return createdAssetReturnRates;
     }
 
-    public AssetReturnRate createAssetReturnRateDatomic(String asset, BigDecimal returnRate) {
-        AssetReturnRate assetReturnRate = new AssetReturnRate();
-        assetReturnRate.setId(UUID.randomUUID());
-        assetReturnRate.setAsset(asset);
-        assetReturnRate.setReturnRate(returnRate);
-        assetReturnRate.setCreatedAt(LocalDateTime.now());
-        assetReturnRate.setUpdatedAt(LocalDateTime.now());
-        return assetReturnRateRepositoryDatomic.save(assetReturnRate);
+    public List<AssetReturnRate> createAssetReturnRatesDatomic(AssetReturnRateListRequest assetReturnRateListRequest) {
+        List<AssetReturnRate> createdAssetReturnRates = new ArrayList<>();
+        for (AssetReturnRateRequest request : assetReturnRateListRequest.getAssets()) {
+            AssetReturnRate assetReturnRate = new AssetReturnRate();
+            assetReturnRate.setId(UUID.randomUUID());
+            assetReturnRate.setAsset(request.getAsset());
+            assetReturnRate.setReturnRate(request.getReturnRate());
+            assetReturnRate.setCreatedAt(LocalDateTime.now());
+            assetReturnRate.setUpdatedAt(LocalDateTime.now());
+
+            createdAssetReturnRates.add(assetReturnRateRepositoryDatomic.save(assetReturnRate));
+        }
+        return createdAssetReturnRates;
+    }
+
+    public List<AssetReturnRate> updateAssetReturnRatesPostgres(AssetReturnRateListRequest assetReturnRateListRequest) {
+        List<AssetReturnRate> updatedRates = new ArrayList<>();
+        for (AssetReturnRateRequest request : assetReturnRateListRequest.getAssets()) {
+            Optional<AssetReturnRate> maybeAssetReturnRate = assetReturnRateRepositoryPostgres.findByAsset(request.getAsset());
+            maybeAssetReturnRate.ifPresent(asset -> {
+                asset.setReturnRate(request.getReturnRate());
+                asset.setUpdatedAt(LocalDateTime.now());
+                updatedRates.add(assetReturnRateRepositoryPostgres.save(asset));
+            });
+        }
+        return updatedRates;
     }
 
     public List<AssetReturnRate> updateAssetReturnRatesDatomic(AssetReturnRateListRequest assetReturnRateListRequest) {
         List<AssetReturnRate> updatedRates = new ArrayList<>();
-
         for (AssetReturnRateRequest request : assetReturnRateListRequest.getAssets()) {
             Optional<AssetReturnRate> maybeAssetReturnRate = assetReturnRateRepositoryDatomic.findAssetReturnRateByAsset(request.getAsset());
             maybeAssetReturnRate.ifPresent(asset -> {
@@ -73,16 +95,7 @@ public class AssetReturnRateService {
                 updatedRates.add(assetReturnRateRepositoryDatomic.save(asset));
             });
         }
-
         return updatedRates;
-    }
-
-
-    public AssetReturnRate updateAssetReturnRatePostgres(UUID id, BigDecimal returnRate) {
-        AssetReturnRate assetReturnRate = assetReturnRateRepositoryPostgres.findById(id).orElseThrow(() -> new RuntimeException("Asset not found"));
-        assetReturnRate.setReturnRate(returnRate);
-        assetReturnRate.setUpdatedAt(LocalDateTime.now());
-        return assetReturnRateRepositoryPostgres.save(assetReturnRate);
     }
 
     public List<AssetReturnRate> getByUpdatedAtFromPostgres(LocalDateTime updatedAt) {
