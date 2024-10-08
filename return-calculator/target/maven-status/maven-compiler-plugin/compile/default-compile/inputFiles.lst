@@ -1,0 +1,17 @@
+/Users/karyme.reis/Documents/Karyme/return-calculator/src/main/java/br/edu/usp/return_calculator/ReturnCalculatorApplication.java
+/Users/karyme.reis/Documents/Karyme/return-calculator/src/main/java/br/edu/usp/return_calculator/aux/UpdateAssetReturnRatesFromJson.java
+/Users/karyme.reis/Documents/Karyme/return-calculator/src/main/java/br/edu/usp/return_calculator/config/DatomicConfig.java
+/Users/karyme.reis/Documents/Karyme/return-calculator/src/main/java/br/edu/usp/return_calculator/controller/AssetReturnRateController.java
+/Users/karyme.reis/Documents/Karyme/return-calculator/src/main/java/br/edu/usp/return_calculator/controller/ProjectionController.java
+/Users/karyme.reis/Documents/Karyme/return-calculator/src/main/java/br/edu/usp/return_calculator/dto/AssetAllocationRequest.java
+/Users/karyme.reis/Documents/Karyme/return-calculator/src/main/java/br/edu/usp/return_calculator/dto/AssetReturnRateListRequest.java
+/Users/karyme.reis/Documents/Karyme/return-calculator/src/main/java/br/edu/usp/return_calculator/dto/AssetReturnRateRequest.java
+/Users/karyme.reis/Documents/Karyme/return-calculator/src/main/java/br/edu/usp/return_calculator/dto/DataSource.java
+/Users/karyme.reis/Documents/Karyme/return-calculator/src/main/java/br/edu/usp/return_calculator/dto/ProjectionRequest.java
+/Users/karyme.reis/Documents/Karyme/return-calculator/src/main/java/br/edu/usp/return_calculator/dto/ProjectionResponse.java
+/Users/karyme.reis/Documents/Karyme/return-calculator/src/main/java/br/edu/usp/return_calculator/model/AssetReturnRate.java
+/Users/karyme.reis/Documents/Karyme/return-calculator/src/main/java/br/edu/usp/return_calculator/repository/AssetReturnRateRepositoryCustomDatomic.java
+/Users/karyme.reis/Documents/Karyme/return-calculator/src/main/java/br/edu/usp/return_calculator/repository/AssetReturnRateRepositoryCustomPostgres.java
+/Users/karyme.reis/Documents/Karyme/return-calculator/src/main/java/br/edu/usp/return_calculator/repository/AssetReturnRateRepositoryPostgres.java
+/Users/karyme.reis/Documents/Karyme/return-calculator/src/main/java/br/edu/usp/return_calculator/service/AssetReturnRateService.java
+/Users/karyme.reis/Documents/Karyme/return-calculator/src/main/java/br/edu/usp/return_calculator/service/ProjectionService.java

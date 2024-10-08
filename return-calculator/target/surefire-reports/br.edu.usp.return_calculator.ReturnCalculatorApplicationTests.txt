@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: br.edu.usp.return_calculator.ReturnCalculatorApplicationTests
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 13.05 s -- in br.edu.usp.return_calculator.ReturnCalculatorApplicationTests
